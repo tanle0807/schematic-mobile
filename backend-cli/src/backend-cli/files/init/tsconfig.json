@@ -1,25 +1,41 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "esModuleInterop": true,
-        "target": "es6",
-        "moduleResolution": "node",
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "outDir": "dist",
-        "sourceMap": true,
-        "lib": [
-            "es2015"
-        ],
-        "types": [
-            "reflect-metadata"
-        ],
-        "declaration": false
-    },
-    "include": [
-        "src/**/*"
+  "compilerOptions": {
+    "target": "es2017",
+    "moduleResolution": "node",
+    "jsx": "react-native",
+    "noEmit": false,
+    "outDir": "outputs",
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "preserveConstEnums": true,
+    "allowJs": false,
+    "noImplicitReturns": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "traceResolution": false,
+    "module": "esnext",
+    "lib": [
+      "es6",
+      "dom",
+      "es5"
     ],
-    "exclude": [
-        "node_modules"
-    ]
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitThis": false,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "baseUrl": ".",
+    "checkJs": false,
+    "resolveJsonModule": true,
+    "emitDecoratorMetadata": true,
+    "downlevelIteration": true,
+    "strict": false,
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "filesGlob": ["src/**/*.tsx"]
 }

@@ -3,6 +3,7 @@ import { Source, url, Rule, Tree, apply, template, move, branchAndMerge, mergeWi
 import inquirer = require("inquirer");
 import { strings } from "@angular-devkit/core";
 import { normalize } from "path";
+import { capitalize } from "@angular-devkit/core/src/utils/strings";
 
 
 const askQuestionProjectName = () => {
@@ -16,18 +17,11 @@ const askQuestionProjectName = () => {
 const askQuestionProjectCode = () => {
     return inquirer.prompt({
         type: "input",
-        name: "projectCode",
-        message: "PROJECT CODE: "
-    },);
-}
-
-const askQuestionDB = () => {
-    return inquirer.prompt({
-        type: "input",
-        name: "dbName",
-        message: "DATABASE NAME: "
+        name: "projectNameSlug",
+        message: "PROJECT Slug: "
     });
 }
+
 const toUppercase = (string: string) => {
     return string.toUpperCase()
 }
@@ -35,14 +29,12 @@ const toUppercase = (string: string) => {
 export const initProject = async (): Promise<any> => {
     const folder = './'
     let { projectName } = await askQuestionProjectName()
-    let { projectCode } = await askQuestionProjectCode()
-    let { dbName } = await askQuestionDB()
+    let { projectNameSlug } = await askQuestionProjectCode()
 
     const source: Source = url("./files/init");
     const params = {
-        dbName,
-        projectName: toUppercase(projectName),
-        projectCode
+        projectName: capitalize(projectName),
+        projectNameSlug
     }
 
     const transformedSource: Source = apply(source, [

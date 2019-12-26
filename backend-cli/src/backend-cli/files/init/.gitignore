@@ -1,9 +1,25 @@
 node_modules
-log/
-dist/
-deploy/
-uploads/
-src/uploads/*
+node_modules/**/*
+.expo/*
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+web-report/
 
+# macOS
+.DS_Store
 
-config.ts
+package-lock.json
+
+yarn-error.log
+
+report.20191203.141007.10688.0.001.json
+
+.expo-shared/assets.json
+
+.expo-shared/

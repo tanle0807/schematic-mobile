@@ -31,7 +31,7 @@ const generateAction = (name: string) => {
     const cap = capitalize(name)
     let template = `
     @action
-    async name() {
+    async {{camel}}() {
         
     }`
     template = template.replace(/{{camel}}/g, camel);
@@ -104,8 +104,10 @@ export const injectAction = async (tree: Tree): Promise<Tree> => {
         }
     }
 
+    const answer = await askQuestionFile()
+
     // Ask which template to inject
-    const injectString = generateAction(name)
+    const injectString = generateAction(answer.name)
 
     // Done find exact file
     if (path.endsWith('/')) {

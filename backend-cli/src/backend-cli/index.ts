@@ -2,6 +2,7 @@ import { SchematicContext, Tree } from '@angular-devkit/schematics';
 import inquirer from 'inquirer';
 import { createStore, injectAction, injectObserverGet } from './modules/store'
 import { createScreenFlatList, createScreen } from './modules/screen';
+import { initProject } from './modules/init';
 
 const enum Module {
     Screen = 'SCREEN',
@@ -9,7 +10,7 @@ const enum Module {
     Store = 'STORE',
     InjectObservableGetter = 'INJECT OBSERVABLE WITH GETTER',
     InjectAction = 'INJECT ACTION',
-
+    InitProject = 'INIT PROJECT'
 }
 
 const askQuestionModule = () => {
@@ -22,7 +23,8 @@ const askQuestionModule = () => {
             Module.ScreenFlatList,
             Module.Store,
             Module.InjectObservableGetter,
-            Module.InjectAction
+            Module.InjectAction,
+            Module.InitProject
         ]
     });
 };
@@ -58,6 +60,8 @@ export function backendCli(options: any): any {
                 return await injectAction(_tree)
             case Module.InjectObservableGetter:
                 return await injectObserverGet(_tree)
+            case Module.InitProject:
+                return await initProject()
         }
 
     };
