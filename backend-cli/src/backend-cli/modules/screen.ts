@@ -17,9 +17,23 @@ export const createScreenFlatList = (rawName: string, options: any): Rule => {
     rawName = capitalize(rawName)
     let folder = `src/screens/${rawName}`
 
-    const source: Source = url("./files/screenLastList");
+    const source: Source = url("./files/screenFlatList");
     const params = {
         name: rawName
     }
+
     return generateTemplate(source, options, folder, params)
 }
+
+export const createScreenFlatListItem = (rawName: string, options: any): Rule => {
+    rawName = capitalize(rawName)
+    let folder = `src/screens/${rawName}`
+
+    const source: Source = url("./files/screenFlatListItem");
+    const params = {
+        name: rawName + `FlatListItem`
+    }
+
+    return generateTemplate(source, options, folder, params)
+}
+

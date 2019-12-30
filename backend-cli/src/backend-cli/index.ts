@@ -1,7 +1,7 @@
-import { SchematicContext, Tree } from '@angular-devkit/schematics';
+import { SchematicContext, Tree, chain } from '@angular-devkit/schematics';
 import inquirer from 'inquirer';
 import { createStore, injectAction, injectObserverGet } from './modules/store'
-import { createScreenFlatList, createScreen } from './modules/screen';
+import { createScreenFlatList, createScreen, createScreenFlatListItem } from './modules/screen';
 import { initProject } from './modules/init';
 
 const enum Module {
@@ -50,7 +50,11 @@ export function backendCli(options: any): any {
                 return createStore(answerFile.name, options)
             case Module.ScreenFlatList:
                 answerFile = await askQuestionFile()
-                return createScreenFlatList(answerFile.name, options)
+                const list = createScreenFlatList(answerFile.name, options)
+                const item = createScreenFlatListItem(answerFile.name, options)
+                return chain([
+                    list, item
+                ])
             case Module.Screen:
                 answerFile = await askQuestionFile()
                 return createScreen(answerFile.name, options)

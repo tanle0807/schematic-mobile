@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
-import BaseScreen from "@/components/Screen/BaseScreen";
+import { StyleSheet, View, Text } from "react-native";
 
 interface <%= classify(name) %>Props { }
 
@@ -8,7 +7,7 @@ interface <%= classify(name) %>Props { }
 interface <%= classify(name) %>State { }
 
 
-class <%= classify(name) %>Screen extends Component<<%= classify(name) %>Props, <%= classify(name) %>State> {
+class <%= classify(name) %> extends Component<<%= classify(name) %>Props, <%= classify(name) %>State> {
     constructor(props: <%= classify(name) %>Props) {
         super(props);
         this.state = {};
@@ -16,11 +15,7 @@ class <%= classify(name) %>Screen extends Component<<%= classify(name) %>Props, 
 
     render() {
         return (
-            <BaseScreen
-                style={{ flex: 1 }}
-            >
-                <View></View>
-            </BaseScreen>
+            <Text>Item</Text>
         );
     }
 }

@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 import {
     View,
-    FlatList
+    FlatList,
+    StyleSheet
 } from "react-native";
 import { observer } from "mobx-react";
 import { NavigationStackScreenProps } from "react-navigation-stack";
+import <%= classify(name) %>FlatListItem from './<%= classify(name) %>FlatListItem'
+
 
 interface <%= classify(name) %>Props extends NavigationStackScreenProps { }
+
+
 interface <%= classify(name) %>State {
     isRefreshing: boolean;
 }
@@ -25,7 +30,13 @@ class <%= classify(name) %>Screen extends Component<<%= classify(name) %>Props, 
     componentDidMount() {
     }
 
-    onRefreshList = async () => {
+    pullToRefresh = async () => {
+        this.setState({ isRefreshing: true });
+
+        this.setState({ isRefreshing: false });
+    };
+
+    loadMore = async () => {
         this.setState({ isRefreshing: true });
 
         this.setState({ isRefreshing: false });
@@ -35,14 +46,14 @@ class <%= classify(name) %>Screen extends Component<<%= classify(name) %>Props, 
         return (
             <View style={{ marginTop: 10, flex: 1 }}>
                 <FlatList
-                    onRefresh={() => { this.onRefreshList() }}
+                    onRefresh={() => { this.pullToRefresh() }}
                     refreshing={this.state.isRefreshing}
                     showsHorizontalScrollIndicator={false}
                     showsVerticalScrollIndicator={false}
                     data={null}
-                    onEndReached={() => { }}
+                    onEndReached={() => { this.loadMore() }}
                     onEndReachedThreshold={0.4}
-                    renderItem={({ item, index }) => null}
+                    renderItem={({ item, index }) => <<%= classify(name) %>FlatListItem/>}
                     keyExtractor={(item, index) => index.toString()}
                 />
             </View>
@@ -54,4 +65,4 @@ class <%= classify(name) %>Screen extends Component<<%= classify(name) %>Props, 
 const styles = StyleSheet.create({ });
 
 
-export default <%= classify(name) %>;
+export default <%= classify(name) %>Screen;
